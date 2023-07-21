@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quotehut</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+    *{
+    box-sizing: border-box;
+    margin: 0%;
+    padding: 0%;
+    font-family: 'Poppins', sans-serif;
+}
+body{
+    width: 100%;
+    min-height: 100vh;
+    background: #66179f;
+}
+.quote-box{
+
+    width: 700px;
+    background: aliceblue;
+    margin: 250px auto 30px;
+    border-radius: 20px;
+    box-shadow: 0px 10px 60px black;
+
+}
+.quote-box{
+    padding: 20px;
+    
+    
+}
+.quote-box h1{
+    text-align: center;
+    padding: 10px;
+    margin-bottom: 40px;
+}
+
+.quote-box blockquote{
+    font-size: 26px;
+    min-height: 110px;
+    text-align: center;
+    padding-left: 20px;
+    padding-right: 30px;
+}
+
+
+.quote-box blockquote ::after, .quote-box blockquote::backdrop{
+    content: '"';
+}
+button{
+    align-content: center;
+}
+span{
+    display: block;
+    margin-top: 5px;
+    float: right;
+    position: relative;
+}
+span::before{
+    content: 'by ';
+  
+}
+.quote-box div{
+    width: 100%;
+    margin-top: 70px;
+    display: flex;
+    justify-content: center;
+}
+
+.quote-box button{
+    color: #fff;
+    border: 1px solid rgb(112, 111, 111);
+    background: #66179f;
+    border-radius: 20px;
+    width: 150px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin-right: 10px;
+}
+.quote-box button:hover{
+    box-shadow: 0px 5px 20px black;
+
+}
+.quote-box button img{
+    width: 20px;
+    margin-right: 10px;
+}
+</style>
+</head>
+<body>
+   
+    <div class="quote-box">
+        <h1>Quote Of The Day</h1>
+        <blockquote id="quote">loding...</blockquote> 
+        <span id="author">loding...</span>
+    
+        <div>
+            <button onclick="getquote(api_url);">Generate</button>
+            <button onclick="tweet ()"> <img src="images/Quote Generator/twitter-logo-2-1.png" >Tweet</button>
+        </div>
+    </div>
+    <script >
+    const  api_url="https://api.quotable.io/random";
+        const quote =document.getElementById("quote");
+        const author =document.getElementById("author");
+        
+        
+        
+        async function getquote(url){
+            const response = await fetch(url);
+            var data= await response.json();
+            quote.innerHTML=  data.content;
+            author.innerHTML=  data.author;
+        
+        
+            
+        }
+        getquote(api_url);
+        function tweet (){
+            window.open("https://twitter.com/intent/tweet?text=Hello%20world")
+        }</script>
+</body>
+</html>
